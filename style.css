@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 100vw;
+  border: solid 1px;
+  border-color: red;
+}
+
+.container {
+  display: flex;
+}
+
+.settingsBar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settingsBar button {
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  background-color: #A9DEF9;
+  transition-duration: 0.4s;
+}
+
+.settingsBar button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid #A9DEF9;
+}
+
+
+#box-bg-color {
+  width: 100%;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  background-color: #A9DEF9;
+}
+
+.boxesContainer {
+ border: 2px solid;
+ border-color: blue;
+ margin-left: 2rem;
+ height: 400px;
+ width: 400px;
+ border-radius: 0.2rem;
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ grid-template-rows: repeat(4,1fr);
+ padding: 0.5rem;
+}
+
+.box {
+  background-color: lightgray;
+  border: 1px solid blue;
+}
