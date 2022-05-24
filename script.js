@@ -6,6 +6,7 @@ const resetDefaultBtn = document.querySelector(".resetDefault")
 const boxSizeInput = document.querySelector("#box-size")
 const boxesContainer = document.querySelector(".boxesContainer")
 const colorInput = document.querySelector("#box-bg-color")
+const boxSizeLabel = document.querySelector(".boxSizeLabel")
 
 const defaultBoxSize = 16
 let boxSize = defaultBoxSize;
@@ -39,6 +40,7 @@ function appendBoxes(parentNode, number){
 
 function setGridColumnRow (e) {
   boxSize = e.target.value;
+  boxSizeLabel.textContent = `Set your pen size! ${boxSize} x ${boxSize}`
   boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
   boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
   const numberOfBoxesToAppend = boxSize * boxSize;
@@ -68,7 +70,9 @@ function setEraserMode () {
 };
 
 function resetDefault () {
-  boxSize = defaultBoxSize
+  boxSize = defaultBoxSize;
+  boxSizeLabel.textContent = `Set your pen size! ${boxSize} x ${boxSize}`
+  boxSizeInput.value = boxSize;
   boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
   boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
   const numberOfBoxesToAppend = boxSize * boxSize;
