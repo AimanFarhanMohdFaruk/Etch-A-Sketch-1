@@ -60,7 +60,7 @@
  padding: 0.5rem;
 }
 
-.box {
-  background-color: lightgray;
-  border: 1px solid blue;
+#box {
+  background-color: white;
+  border: 1px solid lightgray;
 }

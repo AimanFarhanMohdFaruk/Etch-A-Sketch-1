@@ -1,20 +1,61 @@
-// Get all required elements from document
+// Get all required elements from document and declare initial values
 const colorPicker = document.querySelector("#box-bg-color")
 const rainbowBtn = document.querySelector(".rainbowBtn")
 const eraserBtn = document.querySelector(".eraserBtn")
-const clearBoxesBtn = document.querySelector(".clearBoxesBtn")
+const resetDefaultBtn = document.querySelector(".resetDefault")
 const boxSizeInput = document.querySelector("#box-size")
 const boxesContainer = document.querySelector(".boxesContainer")
+const colorInput = document.querySelector("#box-bg-color")
 
+const defaultBoxSize = 16
+let boxSize = defaultBoxSize;
+
+const defaultBoxColor = "#e68e8e"
+let boxColor = defaultBoxColor;
+
+let box = document.createElement('div');
+box.setAttribute('id',"box")
 
 //DOM Manipulation functions
 
-function setGridColumnRow () {
+boxSizeInput.addEventListener('input', setGridColumnRow);
+colorPicker.addEventListener('input', setBoxColor)
+eraserBtn.addEventListener('click', setEraserMode)
+resetDefaultBtn.addEventListener('click', resetDefault)
 
+document.body.addEventListener('mouseover', function(e){
+  if (e.target.id == 'box' ){
+    e.target.style.backgroundColor = boxColor
+  }
+});
+
+function appendBoxes(parentNode, number){
+  const fragment = new DocumentFragment()
+  for (let i = 0; i < number; i++){
+    fragment.appendChild(box.cloneNode(true));
+  }
+  parentNode.appendChild(fragment)
 }
 
-function setBoxColor () {
+function setGridColumnRow (e) {
+  boxSize = e.target.value;
+  boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
+  boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
+  const numberOfBoxesToAppend = boxSize * boxSize;
+  removeAllBoxes()
+  appendBoxes(boxesContainer, numberOfBoxesToAppend);
+};
 
+function fillColor(color){
+  box.style.backgroundColor = `${color}`
+}
+
+function removeAllBoxes (){
+  boxesContainer.innerHTML = '';
+}
+
+function setBoxColor (e) {
+  boxColor = e.target.value
 }
 
 function setRainbowMode () {
@@ -22,13 +63,17 @@ function setRainbowMode () {
 }
 
 function setEraserMode () {
+  boxColor = "#FFFFFF"
+  colorInput.value = boxColor;
+};
 
+function resetDefault () {
+  boxSize = defaultBoxSize
+  boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
+  boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
+  const numberOfBoxesToAppend = boxSize * boxSize;
+  removeAllBoxes()
+  appendBoxes(boxesContainer, numberOfBoxesToAppend);
 }
-
-function resetBoxes () {
-
-}
-
-function appendBoxesToBoxesContainer () {
-  
-}
+resetDefault()
+// Start initial box size
