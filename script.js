@@ -24,11 +24,16 @@ colorPicker.addEventListener('input', setBoxColor)
 eraserBtn.addEventListener('click', setEraserMode)
 resetDefaultBtn.addEventListener('click', resetDefault)
 
-document.body.addEventListener('mouseover', function(e){
+document.body.addEventListener('hover', function(e){
   if (e.target.id == 'box' ){
     e.target.style.backgroundColor = boxColor
   }
 });
+
+function formatGrid (value){
+  boxesContainer.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
+  boxesContainer.style.gridTemplateRows = `repeat(${value}, 1fr)`;
+}
 
 function appendBoxes(parentNode, number){
   const fragment = new DocumentFragment()
@@ -41,8 +46,7 @@ function appendBoxes(parentNode, number){
 function setGridColumnRow (e) {
   boxSize = e.target.value;
   boxSizeLabel.textContent = `Set your pen size! ${boxSize} x ${boxSize}`
-  boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
-  boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
+  formatGrid(boxSize);
   const numberOfBoxesToAppend = boxSize * boxSize;
   removeAllBoxes()
   appendBoxes(boxesContainer, numberOfBoxesToAppend);
@@ -73,8 +77,7 @@ function resetDefault () {
   boxSize = defaultBoxSize;
   boxSizeLabel.textContent = `Set your pen size! ${boxSize} x ${boxSize}`
   boxSizeInput.value = boxSize;
-  boxesContainer.style.gridTemplateColumns = `repeat(${boxSize}, 1fr)`;
-  boxesContainer.style.gridTemplateRows = `repeat(${boxSize}, 1fr)`;
+  formatGrid(boxSize);
   const numberOfBoxesToAppend = boxSize * boxSize;
   removeAllBoxes()
   appendBoxes(boxesContainer, numberOfBoxesToAppend);
