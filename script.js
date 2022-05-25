@@ -24,7 +24,7 @@ colorPicker.addEventListener('input', setBoxColor)
 eraserBtn.addEventListener('click', setEraserMode)
 resetDefaultBtn.addEventListener('click', resetDefault)
 
-document.body.addEventListener('hover', function(e){
+document.body.addEventListener('mouseover', function(e){
   if (e.target.id == 'box' ){
     e.target.style.backgroundColor = boxColor
   }
